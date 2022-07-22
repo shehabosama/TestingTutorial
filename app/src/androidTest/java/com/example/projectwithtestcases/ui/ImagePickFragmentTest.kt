@@ -68,8 +68,7 @@ class ImagePickFragmentTest{
         assertThat(testViewModel.curImageUrl.getOrAwaitValueAndroidTest()).isEqualTo(imageUrl)
     }
     @Test
-    fun clickInsertIntoDb_shoppingItemInsertedIntoDb(){
-        val shoppingItem = ShoppingItem("Test",  1 ,1.0 , "Test" , 1)
+    fun editTextListener_searchingForShoppingItem(){
         val testViewModel = ShoppingViewModel(FakeShoppingRepositoryAndroidTest())
         launchFragmentInHiltContainer<ImagePickFragment>(fragmentFactory = fragmentFactory) {
             viewModel = testViewModel
