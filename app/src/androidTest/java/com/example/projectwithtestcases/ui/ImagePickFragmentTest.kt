@@ -76,7 +76,7 @@ class ImagePickFragmentTest{
         }
         onView(withId(R.id.etSearch)).perform(typeText("STRING_TO_BE_TYPED"), closeSoftKeyboard())
         val value = testViewModel.images.getOrAwaitValueAndroidTest()
-        assertThat(value.getContentIfNotHandled()?.data).isEqualTo(Status.SUCCESS)
+        assertThat(value.getContentIfNotHandled()?.status).isEqualTo(Status.SUCCESS)
 
     }
 

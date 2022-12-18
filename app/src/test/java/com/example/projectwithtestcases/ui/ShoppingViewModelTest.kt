@@ -1,6 +1,7 @@
 package com.example.projectwithtestcases.ui
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.recyclerview.widget.DiffUtil
 import com.example.projectwithtestcases.MainCoroutineRule
 import com.example.projectwithtestcases.getOrAwaitValueTest
 import com.example.projectwithtestcases.other.Constants
@@ -11,16 +12,29 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.mockito.Mock
 
 @ExperimentalCoroutinesApi
 class ShoppingViewModelTest{
+    /**
+     * this for executing the test cases synchronously
+     * **/
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
+    /**
+     * when you run the actual method inside the view model within coroutine scope the default Dispatcher is Main Dispatcher
+     * that is not available with tests because that not an actual app so you have to handle your own Dispatcher ruler
+     * **/
     @get:Rule
     var coroutineRule = MainCoroutineRule()
 
     private lateinit var viewModel:ShoppingViewModel
+    /**
+     * setup function annotated with
+     * @Before it will run before every test case
+     *
+     * **/
     @Before
     fun setup(){
         viewModel = ShoppingViewModel(FakeShoppingRepository())

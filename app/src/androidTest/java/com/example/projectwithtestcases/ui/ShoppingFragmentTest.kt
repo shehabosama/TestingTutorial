@@ -3,8 +3,9 @@ package com.example.projectwithtestcases.ui
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.test.espresso.Espresso
+import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.*
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.swipeLeft
 import androidx.test.espresso.contrib.RecyclerViewActions
@@ -20,13 +21,13 @@ import com.google.common.truth.Truth.assertThat
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.MainCoroutineDispatcher
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.verify
 import javax.inject.Inject
+
 
 @MediumTest
 @HiltAndroidTest
@@ -66,6 +67,7 @@ class ShoppingFragmentTest{
                 swipeLeft()
             )
         )
+        testViewModel?.deleteShoppingItem(shoppingItem)
         assertThat(testViewModel?.shoppingItems?.getOrAwaitValueAndroidTest()).isEmpty()
     }
     @Test
